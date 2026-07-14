@@ -2,6 +2,8 @@
 
 独立的日语 N5～N1 单词筛查网站。
 
+线上地址：<https://zhangzhe5176.github.io/japanese-word-screening/>
+
 保留内容：
 
 - N5～N1 五个等级
