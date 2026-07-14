@@ -11,6 +11,9 @@ const appSource = fs.readFileSync("app.js", "utf8");
 for (const forbidden of ["stories", "vocabRaw", "ocrText", "originalChinese", "naturalChinese", "audio", "images"]) {
   if (appSource.includes(forbidden)) throw new Error(`运行代码仍引用被禁止字段：${forbidden}`);
 }
+for (const helper of ["stripSourceMarkers", "isKanaReading"]) {
+  if (!new RegExp(`function\\s+${helper}\\s*\\(`).test(appSource)) throw new Error(`缺少词卡渲染辅助函数：${helper}`);
+}
 
 const fakeApp = { innerHTML: "" };
 const context = {

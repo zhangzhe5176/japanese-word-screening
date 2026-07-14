@@ -358,6 +358,14 @@
   function localDate() { const now = new Date(); return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, "0"), String(now.getDate()).padStart(2, "0")].join("-"); }
   function normalize(value) { return String(value ?? "").normalize("NFKC").replace(/\s+/g, "").trim(); }
 
+  function stripSourceMarkers(value) {
+    return String(value ?? "").normalize("NFKC").replace(/[+＋=＝→←↑↓~〜～①②③④⑤⑥⑦⑧⑨⑩0-9?？（）()\[\]［］]/gu, "").trim();
+  }
+
+  function isKanaReading(value) {
+    return /^[ぁ-ゖァ-ヺー・／/、\s]+$/u.test(String(value || ""));
+  }
+
   function createXlsxBlob(rows) {
     const sheetName = `${currentLevel.toUpperCase()}词汇`;
     const files = {
